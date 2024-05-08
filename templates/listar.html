@@ -8,8 +8,8 @@
   <body>
     <div>
       <ul>
-        {% for nome, idade in pessoas.items() %}
-        <li>{{nome}}: {{idade}}</li>
+        {% for pessoa in pessoas %}
+        <li>{{pessoa.nome}}: {{pessoa.idade}}</li>
         {% endfor %}
       </ul>
     </div>

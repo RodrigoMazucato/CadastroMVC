@@ -1,15 +1,13 @@
-from sqlalchemy import Integer, String, Column
-from sqlalchemy.orm import DeclarativeBase
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
 
-class Base(DeclarativeBase):
-  pass
-
-
-class User(Base):
-  __tablename__ = 'User'
-  id = Column(Integer, primary_key=True, autoincrement=True)
-  nome = Column(String)
-  idade = Column(Integer)
-
-
+class User(db.Model):
+    __tablename__ = 'User'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome = db.Column(db.String)
+    idade = db.Column(db.Integer)
+    
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
