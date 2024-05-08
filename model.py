@@ -1,15 +1,15 @@
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy import Integer, String, Column
+from sqlalchemy.orm import DeclarativeBase
 
-engine = create_engine("sqlite:///exemplo.db", echo=True)
 
-Session = sessionmaker(bind=engine) # bind é para Ligar de fato a sessão
-session = Session()
+class Base(DeclarativeBase):
+  pass
 
-Base = declarative_base()
 
 class User(Base):
-  __tablename__ = 'users'
+  __tablename__ = 'User'
   id = Column(Integer, primary_key=True, autoincrement=True)
   nome = Column(String)
   idade = Column(Integer)
+
+
