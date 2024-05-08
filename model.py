@@ -1,15 +1,13 @@
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import sessionmaker, declarative_base
+from flask_sqlalchemy import SQLAlchemy
 
-engine = create_engine("sqlite:///exemplo.db", echo=True)
+db = SQLAlchemy()
 
-Session = sessionmaker(bind=engine) # bind é para Ligar de fato a sessão
-session = Session()
-
-Base = declarative_base()
-
-class User(Base):
-  __tablename__ = 'users'
-  id = Column(Integer, primary_key=True, autoincrement=True)
-  nome = Column(String)
-  idade = Column(Integer)
+class User(db.Model):
+    __tablename__ = 'User'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome = db.Column(db.String)
+    idade = db.Column(db.Integer)
+    
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
